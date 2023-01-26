@@ -23,23 +23,33 @@
 <body>
     <main class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-3">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Search for a City:</h5>
-                        <input class="" id="">
+                        <input class="" id="cityInput">
                     </div>
                     <div class="card-body">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <button id="search-button" type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">
                             Search
                         </button>
+                        <h3 id="past-search"></h3>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-md-6">
-
+            <div class="col-12 col-md-9">
+                <div id="weather-container" class="card">
+                    <h2 id="city" class="card-title">City name here</h2>
+                    <img class="" id="tempicon" alt="Temperature icon showing weather conditions" />
+                    <p id="temperature" class=""></p>
+                    <p id="wind" class=""></p>
+                    <p id="humidity" class=""></p>
+                </div>
+                <div>
+                    <h2 id="forecast" class=""></h2>
+                </div>
             </div>
         </div>
     </main>
