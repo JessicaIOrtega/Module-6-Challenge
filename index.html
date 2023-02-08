@@ -41,15 +41,37 @@
 
             <div class="col-12 col-md-9">
                 <div id="weather-container" class="card">
-                    <h2 id="city" class="card-title">City name here</h2>
-                    <img class="" id="tempicon" alt="Temperature icon showing weather conditions" />
+                    <div class="row">
+                        <h3 id="currentDay"></h3>
+                        <h3 id="city" class="card-title"></h3>
+                        <img class="img-fluid" id="tempicon" alt="Temperature icon showing weather conditions" />
+                    </div>
                     <p id="temperature" class=""></p>
                     <p id="wind" class=""></p>
                     <p id="humidity" class=""></p>
                 </div>
-                <div>
-                    <h2 id="forecast" class=""></h2>
-                </div>
+                <section id="weather-containers" class="row">
+                    <div class="card col-2">
+                        <!-- <h3 id="currentDay2"></h3> -->
+                        <img class="img-fluid" id="tempicon2" alt="Temperature icon showing weather conditions" />
+                        <p id="temperature2" class=""></p>
+                        <p id="wind2" class=""></p>
+                        <p id="humidity2" class=""></p>
+                    </div>
+                    <!-- <div id="weather-container3" class="card col-2">
+                        <div class="row">
+                            <h3 id="currentDay3"></h3>
+                            <img class="img-fluid" id="tempicon3" alt="Temperature icon showing weather conditions" />
+                        </div>
+                        <p id="temperature3" class=""></p>
+                        <p id="wind3" class=""></p>
+                        <p id="humidity3" class=""></p>
+                    </div> -->
+
+
+
+
+                </section>
             </div>
         </div>
     </main>
@@ -60,6 +82,8 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 

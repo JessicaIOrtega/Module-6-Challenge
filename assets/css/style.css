@@ -4,3 +4,9 @@ header {
   padding-top: 50px;
   padding-bottom: 50px;
 }
+
+
+#tempicon,
+#tempicon2 {
+  width: 5rem;
+}
