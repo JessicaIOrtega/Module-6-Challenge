@@ -5,8 +5,31 @@ header {
   padding-bottom: 50px;
 }
 
+#weather-container {
+  border: 2px solid black;
+  padding: 10px;
+
+}
 
 #tempicon,
-#tempicon2 {
+#tempicon2,
+#tempicon3,
+#tempicon4,
+#tempicon5,
+#tempicon6 {
   width: 5rem;
+}
+
+.w5Card {
+  background-color: rgb(242, 205, 120);
+  align-items: center;
+  border: 1px solid orange;
+  margin: 0 5px;
+}
+
+.w5Card h5 {
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(54, 58, 196);
+  margin-top: 5px;
 }

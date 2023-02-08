@@ -6,7 +6,7 @@ var currentDate = moment().format('dddd,MMMM Do, YYYY');
 var inputField = document.querySelector("#cityInput");
 var citySearchBtn = document.querySelector("#search-button");
 var weatherCard = document.querySelector("#weather-container");
-var weatherCard2 = document.querySelector("#weather-container2");
+var weatherCards = document.querySelector("#weather-containers");
 var displayIcon = document.querySelector("#tempicon");
 var displayTemp = document.querySelector("#temperature");
 var displayHumidity = document.querySelector("#humidity");
@@ -16,7 +16,7 @@ var forecast = document.querySelector("#forecast");
 var pastSearch = document.querySelector("#past-search");
 
 weatherCard.style.display = "none";
-// weatherCard2.style.display = "none";
+weatherCards.style.display = "none";
 
 citySearchBtn.addEventListener("click", function (event) {
     event.preventDefault();
@@ -26,7 +26,7 @@ citySearchBtn.addEventListener("click", function (event) {
 
     weatherAPI(cityName)
     weatherCard.style.display = "flex";
-    // weatherCard2.style.display = "flex";
+    weatherCards.style.display = "flex";
 });
 
 function weatherAPI(city) {
@@ -41,9 +41,7 @@ function weatherAPI(city) {
         .then(function (response) {
             city = inputField.value;
             // console.log(inputField.value);
-            // console.log("This  is my", response);
-            // var lat = response.coord.lat;
-            // var lon = response.coord.lon;
+            // console.log("This is the info in response", response);
 
             iconValue = response.weather[0].icon
             displayIcon.src = "http://openweathermap.org/img/wn/" + iconValue + ".png"
@@ -53,24 +51,21 @@ function weatherAPI(city) {
 
             localStorage.setItem("City", city);
         });
-    // console.log("this is my temp", response.main.temp)
-    // console.log("temp in F", displayTemp)
 
-    // get uv index
-
+    // get 5day forecast
     var forecast5 = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + APIKey + '&cnt=5'
-
-
-
-    // var getUV = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon" + lon + "&exclude={part}&appid=";
 
     fetch(forecast5)
         .then(function (response) {
             return response.json()
         })
         .then(function (response) {
-            console.log('this is my uv data', response)
+            // console.log('this is my 5day data', response)
 
+
+
+            var displayDate = document.querySelector('#currentDay2');
+            displayDate.textContent = moment().add(1, 'days').format('dddd, MMMM Do');
             var displayIcon2 = document.querySelector("#tempicon2");
             var displayTemp2 = document.querySelector("#temperature2");
             var displayHumidity2 = document.querySelector("#humidity2");
@@ -82,66 +77,76 @@ function weatherAPI(city) {
             displayWind2.textContent = "Wind: " + response.list[0].wind.speed + " mph";
             displayHumidity2.textContent = "Humidity: " + response.list[0].main.humidity + " %";
 
-            // var displayIcon3 = document.querySelector("#tempicon3");
-            // var displayTemp3 = document.querySelector("#temperature3");
-            // var displayHumidity3 = document.querySelector("#humidity3");
-            // var displayWind3 = document.querySelector("#wind3");
+            //OPTION IN CASE FOR LOOP DOESNT WORK
 
-            // iconValue3 = response.list[1].weather[0].icon
-            // displayIcon3.src = "http://openweathermap.org/img/wn/" + iconValue3 + ".png"
-            // displayTemp3.textContent = "Temperature: " + Math.round((response.list[1].main.temp - 273.15) * 9 / 5 + 32) + " \xB0" + "F";
-            // displayWind3.textContent = "Wind: " + response.list[1].wind.speed + " mph";
-            // displayHumidity3.textContent = "Humidity: " + response.list[1].main.humidity + " %";
+            var displayDate = document.querySelector('#currentDay3');
+            displayDate.textContent = moment().add(2, 'days').format('dddd, MMMM Do');
+            var displayIcon3 = document.querySelector("#tempicon3");
+            var displayTemp3 = document.querySelector("#temperature3");
+            var displayHumidity3 = document.querySelector("#humidity3");
+            var displayWind3 = document.querySelector("#wind3");
 
-
-
-
-            // for (var i = 0; i > response.length; i++) {
-
-
-            //     var displayIcon2 = document.createElement('img');
-            //     displayIcon2.setAttribute('id', 'tempicon2');
-
-            //     var displayTemp2 = document.querySelector("#temperature2");
-            //     var displayHumidity2 = document.querySelector("#humidity2");
-            //     var displayWind2 = document.querySelector("#wind2");
+            iconValue3 = response.list[1].weather[0].icon
+            displayIcon3.src = "http://openweathermap.org/img/wn/" + iconValue3 + ".png"
+            displayTemp3.textContent = "Temperature: " + Math.round((response.list[1].main.temp - 273.15) * 9 / 5 + 32) + " \xB0" + "F";
+            displayWind3.textContent = "Wind: " + response.list[1].wind.speed + " mph";
+            displayHumidity3.textContent = "Humidity: " + response.list[1].main.humidity + " %";
 
 
+            var displayDate = document.querySelector('#currentDay4');
+            displayDate.textContent = moment().add(3, 'days').format('dddd, MMMM Do');
+            var displayIcon4 = document.querySelector("#tempicon4");
+            var displayTemp4 = document.querySelector("#temperature4");
+            var displayHumidity4 = document.querySelector("#humidity4");
+            var displayWind4 = document.querySelector("#wind4");
 
-            //     iconValue2 = response.list[0].weather[0].icon
-            //     displayIcon2.src = "http://openweathermap.org/img/wn/" + iconValue2 + ".png"
-            //     displayTemp2.textContent = "Temperature: " + Math.round((response.list[0].main.temp - 273.15) * 9 / 5 + 32) + " \xB0" + "F";
-            //     displayWind2.textContent = "Wind: " + response.list[0].wind.speed + " mph";
-            //     displayHumidity2.textContent = "Humidity: " + response.list[0].main.humidity + " %";
+            iconValue4 = response.list[2].weather[0].icon
+            displayIcon4.src = "http://openweathermap.org/img/wn/" + iconValue4 + ".png"
+            displayTemp4.textContent = "Temperature: " + Math.round((response.list[2].main.temp - 273.15) * 9 / 5 + 32) + " \xB0" + "F";
+            displayWind4.textContent = "Wind: " + response.list[2].wind.speed + " mph";
+            displayHumidity4.textContent = "Humidity: " + response.list[2].main.humidity + " %";
 
 
-            // }
+            var displayDate = document.querySelector('#currentDay5');
+            displayDate.textContent = moment().add(4, 'days').format('dddd, MMMM Do');
+            var displayIcon5 = document.querySelector("#tempicon5");
+            var displayTemp5 = document.querySelector("#temperature5");
+            var displayHumidity5 = document.querySelector("#humidity5");
+            var displayWind5 = document.querySelector("#wind5");
+
+            iconValue5 = response.list[3].weather[0].icon
+            displayIcon5.src = "http://openweathermap.org/img/wn/" + iconValue5 + ".png"
+            displayTemp5.textContent = "Temperature: " + Math.round((response.list[3].main.temp - 273.15) * 9 / 5 + 32) + " \xB0" + "F";
+            displayWind5.textContent = "Wind: " + response.list[3].wind.speed + " mph";
+            displayHumidity5.textContent = "Humidity: " + response.list[3].main.humidity + " %";
+
+
+            var displayDate = document.querySelector('#currentDay6');
+            displayDate.textContent = moment().add(5, 'days').format('dddd, MMMM Do');
+            var displayIcon6 = document.querySelector("#tempicon6");
+            var displayTemp6 = document.querySelector("#temperature6");
+            var displayHumidity6 = document.querySelector("#humidity6");
+            var displayWind6 = document.querySelector("#wind6");
+
+            iconValue6 = response.list[4].weather[0].icon
+            displayIcon6.src = "http://openweathermap.org/img/wn/" + iconValue6 + ".png"
+            displayTemp6.textContent = "Temperature: " + Math.round((response.list[4].main.temp - 273.15) * 9 / 5 + 32) + " \xB0" + "F";
+            displayWind6.textContent = "Wind: " + response.list[4].wind.speed + " mph";
+            displayHumidity6.textContent = "Humidity: " + response.list[4].main.humidity + " %";
 
 
 
         });
 
 
-    for (var i = 1; i <= 5; i++) {
-        // var card = $('#weather-containers').append("<div class='card2 card col-2'></div>");
-        // var date = 
-        // 
 
-        var futureDay = $('#weather-containers').append("<div class='card2 card col-2'></div>");
-        var futureDayDate = $('.card2').append('<h3 class="currentDay2"></h3>');
-        futureDayDate.textContent = moment().add(i, 'days').format('dddd, MMMM Do');
-        futureDay.append(futureDayDate);
-
-        var icon = $('.card2').append('<img class="img-fluid" id="tempicon2" alt="Temperature icon showing weather conditions" />');
-        icon = iconValue2 = response.list[i].weather[0].icon;
-
-
-
-    }
 
     // forecast for 5 days
     // for (var i = 1; i < 6; i++) {
-    //     
+    //     var futureDay = document.createElement('div');
+    //     var futureDayDate = document.createElement('h4');
+    //     futureDayDate.textContent = moment().add(i, 'days').format('dddd, MMMM Do');
+    //     futureDay.append(futureDayDate);
 
     //     futureDay.setAttribute('class', 'card');
     //     console.log('future day', futureDayDate)
@@ -152,7 +157,14 @@ function weatherAPI(city) {
     //     f.append(futureDayTemp)
     //     forecast.append(futureDay)
     // };
+
+    for (var i = 0; i >= 5; i++) {
+        $('weather-containers').appendChild('<div class="HERE"></div>')
+
+    };
+
 };
+
 
 
 
